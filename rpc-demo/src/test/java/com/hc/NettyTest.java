@@ -1,5 +1,6 @@
 package com.hc;
 
+import io.netty.buffer.ByteBuf;
 import org.junit.Test;
 
 /**
@@ -10,6 +11,7 @@ public class NettyTest {
 
     @Test
     public void testByteBuf() {
+        ByteBuf byteBuf = null;
 
     }
 }
