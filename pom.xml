@@ -18,6 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netty.version>4.1.89.Final</netty.version>
         <junit.version>4.13.2</junit.version>
+        <zookeeper.version>3.8.1</zookeeper.version>
     </properties>
 
     <dependencyManagement>
@@ -32,7 +33,14 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+<!--    mvn install:install-file -DgroupId=org.apache.zookeeper -DartifactId=zookeeper -Dversion=3.8.1 -Dpackaging=jar -Dfile=zookeeper-3.8.1.jar-->
+
 
 </project>
