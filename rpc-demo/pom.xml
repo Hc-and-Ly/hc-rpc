@@ -10,12 +10,7 @@
     </parent>
 
     <artifactId>rpc-demo</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>rpc-consumer-demo</module>
-        <module>rpc-provider-demo</module>
-        <module>rpc-api</module>
-    </modules>
+
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

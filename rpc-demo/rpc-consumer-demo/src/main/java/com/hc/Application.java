@@ -1,5 +1,7 @@
 package com.hc;
 
+import com.hc.discovery.RegistryConfig;
+
 /**
  * @author 小盒
  * @verson 1.0

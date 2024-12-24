@@ -1,5 +1,6 @@
 package com.hc;
 
+import com.hc.discovery.RegistryConfig;
 import com.hc.impl.HelloRpcImpl;
 
 /**
