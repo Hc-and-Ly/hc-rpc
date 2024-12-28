@@ -7,7 +7,7 @@ import com.hc.impl.HelloRpcImpl;
  * @author 小盒
  * @verson 1.0
  */
-public class Application {
+public class ProviderApplication {
     public static void main(String[] args) {
 
         ServiceConfig<HelloRpc> service = new ServiceConfig<>();

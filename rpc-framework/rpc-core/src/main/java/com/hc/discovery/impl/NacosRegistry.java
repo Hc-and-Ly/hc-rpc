@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooKeeper;
 
+import java.net.InetSocketAddress;
+
 /**
  * @author 小盒
  * @verson 1.0
@@ -54,5 +56,10 @@ public class NacosRegistry extends AbstractRegistry {
         }
 
 
+    }
+
+    @Override
+    public InetSocketAddress lookup(String serviceName) {
+        return null;
     }
 }

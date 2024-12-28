@@ -3,12 +3,17 @@ package com.hc.discovery.impl;
 import com.hc.Constant;
 import com.hc.ServiceConfig;
 import com.hc.discovery.AbstractRegistry;
+import com.hc.exceptions.NetworkException;
 import com.hc.utils.NetUtils;
 import com.hc.utils.zookeeper.ZookeeperNode;
 import com.hc.utils.zookeeper.ZookeeperUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooKeeper;
+
+import java.net.InetSocketAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 小盒
@@ -54,5 +59,28 @@ public class ZookeeperRegistry extends AbstractRegistry {
         }
 
 
+    }
+
+    @Override
+    public InetSocketAddress lookup(String serviceName) {
+        //1,找到服务对应的节点
+        String serviceNode = Constant.BASE_PROVIDERS_PATH+"/"+serviceName;
+
+        //2。从zk中获取子节点 192.168.12.123:2181
+        List<String > children = ZookeeperUtils.getChildren(zooKeeper,serviceNode,null);
+
+        //获取了所有可用的服务列表
+       List<InetSocketAddress> inetSocketAddresses= children.stream().map( ipString -> {
+            String[] ipAndPort = ipString.split(":");
+            String ip = ipAndPort[0];
+            int port = Integer.valueOf(ipAndPort[1]);
+            return  new InetSocketAddress(ip,port);
+        }).toList();
+
+        if(inetSocketAddresses.size() == 0) {
+            throw  new NetworkException("未发现任何可用的服务");
+        }
+
+        return inetSocketAddresses.get(0);
     }
 }

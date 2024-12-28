@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -106,4 +107,19 @@ public class ZookeeperUtils {
     }
 
 
+    /**
+     * 查询一个节点的子元素
+     * @param zooKeeper zk实例
+     * @param serviceNode 服务节点
+     * @return 子元素列表
+     */
+    public static List<String> getChildren(ZooKeeper zooKeeper, String serviceNode, Watcher watcher) {
+        try {
+            return zooKeeper.getChildren(serviceNode,watcher);
+        } catch (KeeperException | InterruptedException e) {
+            log.error("获取节点{} 的子元素发生异常",serviceNode,e);
+            throw new RuntimeException(e);
+        }
+
+    }
 }

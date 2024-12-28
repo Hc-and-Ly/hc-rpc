@@ -6,16 +6,16 @@ import com.hc.discovery.RegistryConfig;
  * @author 小盒
  * @verson 1.0
  */
-public class Application {
+public class ConsumerApplication {
     public static void main(String[] args) {
        //配置项都给reference
         ReferenceConfig<HelloRpc> reference = new ReferenceConfig<>();
-        reference.setInterface(HelloRpc.class);
+        reference.setInterface(HelloRpc.class);//写死了
 
 
         RpcBootstrap.getInstance()
                     .application("first-rpc-consumer")
-                    .registry(new RegistryConfig("zookeeper://192.168.10"))
+                    .registry(new RegistryConfig("zookeeper://192.168.106.128:2181"))
                     .reference(reference);
 
 
